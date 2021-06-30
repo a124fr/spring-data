@@ -20,7 +20,7 @@ public class UnidadeTrabalho {
 	private String descricao;
 	private String Endereco;
 	
-	@ManyToMany(mappedBy = "UnidadeTrabalho", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "unidadesTrabalhos", fetch = FetchType.EAGER)
 	private List<Funcionario> funcionarios;
 
 	public Integer getId() {
