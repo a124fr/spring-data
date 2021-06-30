@@ -1,8 +1,5 @@
 package br.com.alura.spring.data.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
@@ -26,6 +23,8 @@ public class CrudCargoService {
 			System.out.println("0 - sair");
 			System.out.println("1 - salvar");
 			System.out.println("2 - atualizar");
+			System.out.println("3 - visualisar");
+			System.out.println("4 - deletar");
 			Integer acao = scan.nextInt();
 			
 			switch(acao) {
@@ -34,7 +33,13 @@ public class CrudCargoService {
 				break;
 			case 2:
 				atualizar(scan);
-				break;				
+				break;
+			case 3:
+				visualizar();
+				break;
+			case 4:
+				deletar(scan);
+				break;
 			default:
 				system = false;
 				break;
@@ -65,6 +70,19 @@ public class CrudCargoService {
 		
 		this.cargoRepository.save(cargo);
 		System.out.println("Atualizado");;
+	}
+	
+	private void visualizar() {
+		Iterable<Cargo> cargos = this.cargoRepository.findAll();
+		cargos.forEach(System.out::println);
+	}
+	
+	private void deletar(Scanner scan) {
+		System.out.println("Id");
+		int id = scan.nextInt();
+		
+		this.cargoRepository.deleteById(id);
+		System.out.println("Deletado");
 	}
 		
 }
