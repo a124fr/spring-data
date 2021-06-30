@@ -33,26 +33,10 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("Qual ação você quer executar");
 			System.out.println("0 - sair");
 			System.out.println("1 - cargo");
-			System.out.println("2 - atualizar cargo");
-			
+						
 			int acao = scan.nextInt();
 			if(acao == 1) {
-				this.cargoService.inicial(scan);
-			} else if(acao == 2) {
-				System.out.println("Lista de Registro: ");
-				List<Cargo> cargos = this.cargoService.listar();
-				cargos.forEach(c->System.out.println(c.getId() + " - " + c.getDescricao()));
-				System.out.println("---------------------------------------------");
-				System.out.println("Digite um código de cargo?");
-				Integer codigoCargo = scan.nextInt();
-				System.out.println("Digite a nova descricao?");
-				String descricaoCargo = scan.next();
-				
-				Cargo cargo = new Cargo();
-				cargo.setId(codigoCargo);
-				cargo.setDescricao(descricaoCargo);
-				
-				this.cargoService.atualizar(cargo);				
+				this.cargoService.inicial(scan);						
 			} else {
 				system = false;
 			}

@@ -13,6 +13,7 @@ import br.com.alura.spring.data.repository.CargoRepository;
 @Service
 public class CrudCargoService {
 	
+	private Boolean system = true;
 	private final CargoRepository cargoRepository;
 	
 	public CrudCargoService(CargoRepository cargoRepository) {
@@ -20,7 +21,25 @@ public class CrudCargoService {
 	}
 	
 	public void inicial(Scanner scan) {
-		salvar(scan);
+		while(system) {
+			System.out.println("Qual ação de cargo deseja executar?");
+			System.out.println("0 - sair");
+			System.out.println("1 - salvar");
+			System.out.println("2 - atualizar");
+			Integer acao = scan.nextInt();
+			
+			switch(acao) {
+			case 1:
+				salvar(scan);
+				break;
+			case 2:
+				atualizar(scan);
+				break;				
+			default:
+				system = false;
+				break;
+			}
+		}
 	}
 	
 	private void salvar(Scanner scan) {
@@ -33,20 +52,19 @@ public class CrudCargoService {
 		System.out.println("Salvo");
 	}
 	
-	public List<Cargo> listar() {
-		List<Cargo> lista = new ArrayList<Cargo>();
-		Iterable<Cargo> cargos = this.cargoRepository.findAll();
-		cargos.forEach(c-> lista.add(c));
+	public void atualizar(Scanner scan) {
+		System.out.println("Id");
+		int id = scan.nextInt();
 		
-		return lista;
-	}
-
-	public void atualizar(Cargo cargo) {
-		Optional<Cargo> existeCargo = this.cargoRepository.findById(cargo.getId());
+		System.out.println("Descrição do Cargo");
+		String descricao = scan.next();
 		
-		if(existeCargo.isPresent()) {
-			this.cargoRepository.save(cargo);
-		}
+		Cargo cargo = new Cargo();
+		cargo.setId(id);		
+		cargo.setDescricao(descricao);
+		
+		this.cargoRepository.save(cargo);
+		System.out.println("Atualizado");;
 	}
 		
 }
