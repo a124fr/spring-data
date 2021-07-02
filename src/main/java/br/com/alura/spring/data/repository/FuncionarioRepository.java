@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.alura.spring.data.orm.Funcionario;
+import br.com.alura.spring.data.orm.FuncionarioProjecao;
 
 @Repository
 public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Integer> {
@@ -22,4 +22,7 @@ public interface FuncionarioRepository extends PagingAndSortingRepository<Funcio
 	
 	@Query(value = "SELECT * FROM funcionario f WHERE f.data_contratacao >= :data", nativeQuery = true) /* Query nativa do banco*/
 	List<Funcionario> findDataContratacaoMaior(LocalDate data);
+	
+	@Query(value = "SELECT f.id, f.nome, f.salario FROM funcionario f", nativeQuery = true)
+	List<FuncionarioProjecao> buscarFuncionarioSalario();
 }
