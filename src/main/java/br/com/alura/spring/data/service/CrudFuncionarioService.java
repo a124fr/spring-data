@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.alura.spring.data.orm.Cargo;
 import br.com.alura.spring.data.orm.Funcionario;
+import br.com.alura.spring.data.orm.FuncionarioProjecao;
 import br.com.alura.spring.data.orm.UnidadeTrabalho;
 import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
@@ -46,6 +47,7 @@ public class CrudFuncionarioService {
 			System.out.println("2 - atualizar");
 			System.out.println("3 - visualisar");
 			System.out.println("4 - deletar");
+			System.out.println("5 - pesquisa funcionario e salario");
 			Integer acao = scan.nextInt();
 			
 			switch(acao) {
@@ -60,6 +62,9 @@ public class CrudFuncionarioService {
 				break;
 			case 4:
 				deletar(scan);
+				break;
+			case 5:
+				pesquisafuncionarioSalario();
 				break;
 			default:
 				system = false;
@@ -175,6 +180,11 @@ public class CrudFuncionarioService {
 		}		
 		
 		return unidades;
+	}
+	
+	private void pesquisafuncionarioSalario() {
+		List<FuncionarioProjecao> lista = this.funcionarioRepository.buscarFuncionarioSalario();
+		lista.forEach(f->System.out.println("Funcionário Id: " + f.getId() + ", Nome: " + f.getNome() + ", Salário: " + f.getSalario()));
 	}
 	
 }
