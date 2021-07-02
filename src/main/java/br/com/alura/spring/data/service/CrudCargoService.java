@@ -45,6 +45,8 @@ public class CrudCargoService {
 				break;
 			}
 		}
+		
+		system = true;
 	}
 	
 	private void salvar(Scanner scan) {
