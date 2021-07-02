@@ -29,6 +29,7 @@ public class RelatoriosService {
 			System.out.println("0 - sair");
 			System.out.println("1 - busca funcionário nome");
 			System.out.println("2 - busca funcionário nome, data contratação e salário maior");
+			System.out.println("3 - busca funcionário data contratação");
 			
 			Integer acao = scan.nextInt();
 			
@@ -38,6 +39,10 @@ public class RelatoriosService {
 				break;		
 			case 2:
 				buscaFuncionarioNomeSalarioMaiorData(scan);
+				break;
+			case 3:
+				buscaFuncionarioDataContratacao(scan);
+				break;
 			default:
 				system = false;
 				break;
@@ -67,6 +72,15 @@ public class RelatoriosService {
 		BigDecimal salario = new BigDecimal(scan.next());
 		
 		List<Funcionario> lista = this.funcionarioRepository.findNomeSalarioMaiorDataContratacao(nome, salario, dataContratacao);
+		lista.forEach(System.out::println);
+	}
+	
+	private void buscaFuncionarioDataContratacao(Scanner scan) {
+		System.out.println("Qual o data contratação deseja pesquisar");
+		String data = scan.next();	
+		LocalDate dataContratacao = LocalDate.parse(data, formatter);
+		
+		List<Funcionario> lista = this.funcionarioRepository.findDataContratacaoMaior(dataContratacao);
 		lista.forEach(System.out::println);
 	}
 	

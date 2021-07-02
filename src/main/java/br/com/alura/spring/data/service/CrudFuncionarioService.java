@@ -89,11 +89,11 @@ public class CrudFuncionarioService {
 		Optional<Cargo> cargo = this.cargoRepository.findById(cargoId);
 		funcionario.setCargo(cargo.get());
 		funcionario.setUnidadesTrabalhos(unidades);		
-        funcionario.setDataContracao(LocalDate.parse(dataContratacao, formatter));
+        funcionario.setDataContratacao(LocalDate.parse(dataContratacao, formatter));
 		
 		this.funcionarioRepository.save(funcionario);
 		
-		System.out.println("Atualizado");
+		System.out.println("Cadastrado");
 	}
 	
 	public void atualizar(Scanner scan) {
@@ -125,10 +125,10 @@ public class CrudFuncionarioService {
 		Optional<Cargo> cargo = this.cargoRepository.findById(cargoId);
 		funcionario.setCargo(cargo.get());
 		funcionario.setUnidadesTrabalhos(unidades);		
-        funcionario.setDataContracao(LocalDate.parse(dataContratacao, formatter));
+        funcionario.setDataContratacao(LocalDate.parse(dataContratacao, formatter));
 				
 		this.funcionarioRepository.save(funcionario);
-		System.out.println("Atualizado");;
+		System.out.println("Atualizado");
 	}
 	
 	private void visualizar() {

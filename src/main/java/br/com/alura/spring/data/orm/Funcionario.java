@@ -29,7 +29,7 @@ public class Funcionario {
 	private String nome;
 	private String cpf;
 	private BigDecimal salario;
-	private LocalDate dataContracao = LocalDate.now();
+	private LocalDate dataContratacao = LocalDate.now();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cargo_id", nullable = false)
@@ -65,12 +65,12 @@ public class Funcionario {
 		this.salario = salario;
 	}
 
-	public LocalDate getDataContracao() {
-		return dataContracao;
+	public LocalDate getDataContratacao() {
+		return dataContratacao;
 	}
 
-	public void setDataContracao(LocalDate dataContracao) {
-		this.dataContracao = dataContracao;
+	public void setDataContratacao(LocalDate dataContratacao) {
+		this.dataContratacao = dataContratacao;
 	}
 
 	public String getCpf() {
@@ -99,7 +99,7 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", salario=" + salario + ", dataContracao=" + dataContracao
+		return "Funcionario [id=" + id + ", nome=" + nome + ", salario=" + salario + ", dataContratacao=" + dataContratacao
 				+ "]";
 	}
 }
