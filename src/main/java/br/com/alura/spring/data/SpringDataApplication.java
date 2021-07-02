@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.alura.spring.data.service.CrudCargoService;
 import br.com.alura.spring.data.service.CrudFuncionarioService;
 import br.com.alura.spring.data.service.CrudUnidadeTrabalhoService;
+import br.com.alura.spring.data.service.RelatorioFuncionarioDinamico;
 import br.com.alura.spring.data.service.RelatoriosService;
 
 @SpringBootApplication
@@ -20,15 +21,18 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudFuncionarioService funcionarioService;
 	private final CrudCargoService cargoService;
 	private final RelatoriosService relatoriosService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 	
 	public SpringDataApplication(CrudCargoService cargoService, 
 			CrudFuncionarioService funcionarioService, 
 			CrudUnidadeTrabalhoService unidadeTrabalhoService,
-			RelatoriosService relatoriosService) {
+			RelatoriosService relatoriosService, 
+			RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
 		this.relatoriosService = relatoriosService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico; 
 	}
 	
 	public static void main(String[] args) {
@@ -46,6 +50,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - unidade de trabalho");
 			System.out.println("3 - funcionario");
 			System.out.println("4 - Relatórios");
+			System.out.println("5 - Relatório dinamico");
 						
 			int acao = scan.nextInt();
 			if(acao == 1) {
@@ -56,7 +61,9 @@ public class SpringDataApplication implements CommandLineRunner {
 				this.funcionarioService.inicial(scan);				
 			} else if(acao == 4) {
 				this.relatoriosService.inicial(scan);
-			}else {
+			} else if(acao == 5) {
+				this.relatorioFuncionarioDinamico.inicial(scan);
+			} else {
 				system = false;
 			}
 			
